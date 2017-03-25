@@ -125,6 +125,7 @@ Listener methods:
 - `TimeSense.addListener(listener)`, add listener for all rules defined in TimeSense
 - `TimeSense.addListener(ruleName, listener)`, add listener for rule name
 - `TimeSense.removeListeners()`, remove all listeners in TimeSense
+- `TimeSense.removeListener(listener)`, remove listener from TimeSense
 - `TimeSense.removeListener(ruleName)`, remove all listeners for rule name
 - `TimeSense.removeListener(ruleName, listener)`, remove specific listener for rule name
 
