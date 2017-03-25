@@ -41,7 +41,7 @@ Aside from its default constructor, we provide a fast way to generate each defau
 
 #### Method
 
-- `TSRule.equal(TSRule)`, check whether current rule match another rule. Return `Boolean`
+- `TSRule.equals(TSRule)`, check whether current rule match another rule. Return `Boolean`
 - `TSRule.getName()`, getter for name property. Return `String`
 - `TSRule.setName(String)`, setter for name property
 - `TSRule.getStartTime()`, getter for startTime property. Return `Date`
