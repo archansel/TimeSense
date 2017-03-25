@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TimeSenseExample.iml" filepath="$PROJECT_DIR$/TimeSenseExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TimeSense.iml" filepath="$PROJECT_DIR$/TimeSense.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/timesense/timesense.iml" filepath="$PROJECT_DIR$/timesense/timesense.iml" />
     </modules>
