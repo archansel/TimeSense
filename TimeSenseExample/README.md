@@ -113,6 +113,7 @@ Detection methods:
 - `TimeSense.triggerMatch(TSRule, time)`, trigger all listeners for rule in time if match
 
 Rule methods:
+- `TimeSense.addRules(ArrayList<TSRule>)`, add rules for detection 
 - `TimeSense.addRule(TSRule)`, add rule for detection
 - `TimeSense.addRule(ruleName, startTime, endTime)`, add rule using name, start time, and end time
 - `TimeSense.updateRule(ruleName, startTime, endTime)`, update existing rule with start time and end time. Return `Boolean` whether rule updated or not
