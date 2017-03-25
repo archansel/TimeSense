@@ -13,6 +13,58 @@ import java.util.Date;
  */
 public class TSConfiguration {
 
+    public static class Builder {
+
+        private ArrayList<TSRule> rules;
+
+        /***
+         * Constructor.
+         */
+        public Builder() {
+            this.rules = new ArrayList<TSRule>();
+        }
+
+        /***
+         * Add rules to builder
+         *
+         * @param rules
+         * @return Builder
+         */
+        public Builder addRules(ArrayList<TSRule> rules) {
+            for (TSRule rule: rules) {
+                this.addRule(rule);
+            }
+            return this;
+        }
+
+        /***
+         * Add rule to builder
+         *
+         * @param rule
+         * @return Builder
+         */
+        public Builder addRule(TSRule rule) {
+            if (!this.rules.contains(rule)) this.rules.add(rule);
+            return this;
+        }
+
+        /***
+         * @return TSConfiguration that builder build
+         */
+        public TSConfiguration done() {
+            TSConfiguration configuration = new TSConfiguration();
+            configuration.addRules(this.rules);
+            return configuration;
+        }
+    }
+
+    /***
+     * @return Builder for TSConfiguration
+     */
+    public static Builder create() {
+        return new Builder();
+    }
+
     private ArrayList<TSRule> rules;
 
     /***

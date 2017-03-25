@@ -63,6 +63,20 @@ public class TSConfigurationUnitTest {
     }
 
     @Test
+    public void constructorFromBuilder() throws Exception {
+        TSConfiguration configuration = TSConfiguration.defaultConfiguration();
+        configuration.addRule(TSRule.evening());
+        configuration.addRule(TSRule.night());
+
+        TSRule ruleMorning = TSRule.morning();
+        TSRule ruleAfternoon = TSRule.afternoon();
+
+        TSConfiguration newConfiguration = TSConfiguration.create().addRules(configuration.getRules()).addRule(ruleMorning).addRule(ruleAfternoon).done();
+
+        assertEquals("Rules size should be four", 4, newConfiguration.getRules().size());
+    }
+
+    @Test
     public void defaultConfiguration() throws Exception {
         TSConfiguration configuration = TSConfiguration.defaultConfiguration();
 
