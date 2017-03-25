@@ -58,7 +58,7 @@ Configuration object for TimeSense class. TSConfiguration might contains some ru
 There are three ways how you can create TSConfiguration object:
 
 ```
-    TSConfiguration.default()
+    TSConfiguration.defaultConfiguration()
 ```
 The easiest way to generate TSConfiguration object. It will return new TSConfiguration object with four rules defined in it (`TS_RULE_NAME_MORNING`, `TS_RULE_NAME_AFTERNOON`, `TS_RULE_NAME_EVENING`, `TS_RULE_NAME_NIGHT`).
 
