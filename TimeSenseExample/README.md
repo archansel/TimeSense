@@ -14,22 +14,18 @@ Rule object used in TimeSense detection.
 
 #### Constant
 
-`TSRule.Name`
 By default there are four rules constants that already defined in the library:
 - `TS_RULE_NAME_MORNING`, 04:00 <= T < 11:00
 - `TS_RULE_NAME_AFTERNOON`, 11:00 <= T < 17:00
 - `TS_RULE_NAME_EVENING`, 17:00 <= T < 21:00
 - `TS_RULE_NAME_NIGHT`, 21:00 <= T < 04:00
 
-TSRuleName object constant basically is a `String` so developer can define another string as a rule using `TSRule.Name` object. 
-
 #### Construction
 
-Quite easy to create TSRule object, just use its object constructor that accept three parameters: name (TSRule.Name), start time (Date), and end time (Date).
+Quite easy to create TSRule object, just use its object constructor that accept three parameters: name (String), start time (Date), and end time (Date).
 `TSRule rule = new TSRule(ruleName, startTime, endTime);`
 
 Aside from its default constructor, we provide a fast way to generate each default rules.
-
 ```
     TSRule.morning();
     TSRule.afternoon();
@@ -46,7 +42,7 @@ Aside from its default constructor, we provide a fast way to generate each defau
 #### Method
 
 - `TSRule.equal(TSRule)`, check whether current rule match another rule. Return `Boolean`
-- `TSRule.getName()`, getter for name property. Return `TSRule.Name`
+- `TSRule.getName()`, getter for name property. Return `String`
 - `TSRule.setName(String)`, setter for name property
 - `TSRule.getStartTime()`, getter for startTime property. Return `Date`
 - `TSRule.setStartTime(Date)`, setter for startTime property
@@ -64,23 +60,20 @@ There are three ways how you can create TSConfiguration object:
 ```
     TSConfiguration.default()
 ```
-
 The easiest way to generate TSConfiguration object. It will return new TSConfiguration object with four rules defined in it (`TS_RULE_NAME_MORNING`, `TS_RULE_NAME_AFTERNOON`, `TS_RULE_NAME_EVENING`, `TS_RULE_NAME_NIGHT`).
 
 ```
     new TSConfiguration()
 ```
-
 Empty configuration object. No rules are defined in it, you have to add it manualy.
 
 ```
     new TSConfiguration(configuration)
 ```
-
 Create TSConfiguration object based on another TSConfiguration object. The new configuration object will copy every rules defined in the source configuration object.
 
 We also provide a builder class `TSConfiguration.Builder` that can be used to build configuration object.
-`TSConfiguration.create().addRule(rule).addRule(rule).done()`
+`TSConfiguration.create().addRule(TSRule).addRule(TSRule).done()`
 
 #### Method
 
@@ -88,9 +81,9 @@ We also provide a builder class `TSConfiguration.Builder` that can be used to bu
 - `TSConfiguration.setRules(List<TSRule>)`, set rules in configuration replacing the old one 
 - `TSConfiguration.addRules(List<TSRule>)`, add rules to existing rules in configuration 
 - `TSConfiguration.addRule(TSRule)`, add rule object to the configuration
-- `TSConfiguration.addRule(TSRule.Name, startTime, endTime)`, add rule object as separated rule property
-- `TSConfiguration.updateRule(TSRule.Name, startTime, endTime)`, update rule based on its rule name with new start and end time. Return `Boolean` whether rule updated or not
-- `TSConfiguration.removeRule(TSRule.Name)`, remove rule from configuration
+- `TSConfiguration.addRule(ruleName, startTime, endTime)`, add rule object as separated rule property
+- `TSConfiguration.updateRule(ruleName, startTime, endTime)`, update rule based on its rule name with new start and end time. Return `Boolean` whether rule updated or not
+- `TSConfiguration.removeRule(ruleName)`, remove rule name from configuration
 
 ### TimeSense
 
@@ -121,17 +114,17 @@ Detection methods:
 
 Rule methods:
 - `TimeSense.addRule(TSRule)`, add rule for detection
-- `TimeSense.addRule(TSRule.Name, startTime, endTime)`, add rule using name, start time, and end time
-- `TimeSense.updateRule(TSRule.Name, startTime, endTime)`, update existing rule with start time and end time. Return `Boolean` whether rule updated or not
-- `TimeSense.removeRule(TSRule.Name)`, remove rule by rule name
-- `TimeSense.getTimeRange(TSRule.Name)`, get start time and end time for certain rule. Return `List<Date>`, start time and end time
+- `TimeSense.addRule(ruleName, startTime, endTime)`, add rule using name, start time, and end time
+- `TimeSense.updateRule(ruleName, startTime, endTime)`, update existing rule with start time and end time. Return `Boolean` whether rule updated or not
+- `TimeSense.removeRule(ruleName)`, remove rule by rule name
+- `TimeSense.getTimeRange(ruleName)`, get start time and end time for certain rule. Return `List<Date>`, start time and end time
 
 Listener methods:
 - `TimeSense.addListener(listener)`, add listener for all rules defined in TimeSense
-- `TimeSense.addListener(TSRule.Name, listener)`, add listener for rule name
+- `TimeSense.addListener(ruleName, listener)`, add listener for rule name
 - `TimeSense.removeListeners()`, remove all listeners in TimeSense
-- `TimeSense.removeListener(TSRule.Name)`, remove all listeners for rule name
-- `TimeSense.removeListener(TSRule.Name, listener)`, remove specific listener for rule name
+- `TimeSense.removeListener(ruleName)`, remove all listeners for rule name
+- `TimeSense.removeListener(ruleName, listener)`, remove specific listener for rule name
 
 ## Team
 
