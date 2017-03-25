@@ -1,6 +1,6 @@
 # Time Sense
 
-Easy to use event detection based on time. Time Sense provide default set of rules that can trigger an event listeners. By default we have four time range; morning, afternoon, evening, and night but developer can add their own time range as a rules to trigger event listeners.
+Easy to use event detection based on time. Time Sense provide default set of rules that can trigger an event listeners. By default we have four rules; morning, afternoon, evening, and night but developer can add their own rules to trigger event listeners.
 
 ## Install
 
