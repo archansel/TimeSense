@@ -77,9 +77,9 @@ We also provide a builder class `TSConfiguration.Builder` that can be used to bu
 
 #### Method
 
-- `TSConfiguration.getRules()`, get all rules in configuration. Return `List` of TSRule 
-- `TSConfiguration.setRules(List<TSRule>)`, set rules in configuration replacing the old one 
-- `TSConfiguration.addRules(List<TSRule>)`, add rules to existing rules in configuration 
+- `TSConfiguration.getRules()`, get all rules in configuration. Return `ArrayList` of TSRule 
+- `TSConfiguration.setRules(ArrayList<TSRule>)`, set rules in configuration replacing the old one 
+- `TSConfiguration.addRules(ArrayList<TSRule>)`, add rules to existing rules in configuration 
 - `TSConfiguration.addRule(TSRule)`, add rule object to the configuration
 - `TSConfiguration.addRule(ruleName, startTime, endTime)`, add rule object as separated rule property
 - `TSConfiguration.updateRule(ruleName, startTime, endTime)`, update rule based on its rule name with new start and end time. Return `Boolean` whether rule updated or not
@@ -95,8 +95,8 @@ TimeSense will use empty configuration (no rules defined) if no TSConfiguration 
 `TimeSense.setConfiguration(TSConfiguration)`
 
 Detection methods:
-- `TimeSense.detect()`, find matching rule for current time. Return `List<TSRule>`
-- `TimeSense.detect(time)`, find matching rule for time. Return `List<TSRule>`
+- `TimeSense.detect()`, find matching rule for current time. Return `ArrayList<TSRule>`
+- `TimeSense.detect(time)`, find matching rule for time. Return `ArrayList<TSRule>`
 - `TimeSense.isMorning()`, check whether current time is morning (based on TS_RULE_NAME_MORNING) or not. Return `Boolean`
 - `TimeSense.isMorning(time)`, check whether time is morning (based on TS_RULE_NAME_MORNING) or not. Return `Boolean`
 - `TimeSense.isAfternoon()`, check whether current time is afternoon (based on TS_RULE_NAME_AFTERNOON) or not. Return `Boolean`
@@ -117,7 +117,7 @@ Rule methods:
 - `TimeSense.addRule(ruleName, startTime, endTime)`, add rule using name, start time, and end time
 - `TimeSense.updateRule(ruleName, startTime, endTime)`, update existing rule with start time and end time. Return `Boolean` whether rule updated or not
 - `TimeSense.removeRule(ruleName)`, remove rule by rule name
-- `TimeSense.getTimeRange(ruleName)`, get start time and end time for certain rule. Return `List<Date>`, start time and end time
+- `TimeSense.getTimeRange(ruleName)`, get start time and end time for certain rule. Return `ArrayList<Date>`, start time and end time
 
 Listener methods:
 - `TimeSense.addListener(listener)`, add listener for all rules defined in TimeSense
