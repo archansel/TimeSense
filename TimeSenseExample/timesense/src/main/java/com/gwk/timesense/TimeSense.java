@@ -127,7 +127,10 @@ public class TimeSense {
      */
     public void addListener(String ruleName, TSListener listener) {
         ArrayList<TSListener> listeners = this.specificListeners.get(ruleName);
-        if (listeners == null) listeners = new ArrayList<TSListener>();
+        if (listeners == null) {
+            listeners = new ArrayList<TSListener>();
+            this.specificListeners.put(ruleName, listeners);
+        }
         listeners.add(listener);
     }
 
@@ -141,6 +144,19 @@ public class TimeSense {
 
     /***
      * Remove specific listener from TimeSense
+     *
+     * @param listener to be removed
+     */
+    public void removeListener(TSListener listener) {
+        this.genericListeners.remove(listener);
+        for (String key: this.specificListeners.keySet()) {
+            ArrayList<TSListener> listeners = this.specificListeners.get(key);
+            listeners.remove(listener);
+        }
+    }
+
+    /***
+     * Remove specific listener for rule name from TimeSense
      *
      * @param ruleName Rule name identifier
      */
