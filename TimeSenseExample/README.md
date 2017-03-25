@@ -84,6 +84,7 @@ We also provide a builder class `TSConfiguration.Builder` that can be used to bu
 - `TSConfiguration.addRule(ruleName, startTime, endTime)`, add rule object as separated rule property
 - `TSConfiguration.updateRule(ruleName, startTime, endTime)`, update rule based on its rule name with new start and end time. Return `Boolean` whether rule updated or not
 - `TSConfiguration.removeRule(ruleName)`, remove rule name from configuration
+- `TSConfiguration.findRule(ruleName)`, find rule with name from configuration
 
 ### TimeSense
 

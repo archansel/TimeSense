@@ -168,7 +168,7 @@ public class TSConfiguration {
      * @param ruleName Rule name to find
      * @return TSRule
      */
-    private TSRule findRule(String ruleName) {
+    public TSRule findRule(String ruleName) {
         for (TSRule rule: this.rules) {
             if (rule.getName().equals(ruleName)) return rule;
         }

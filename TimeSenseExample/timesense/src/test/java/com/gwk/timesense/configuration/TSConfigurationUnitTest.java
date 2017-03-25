@@ -176,4 +176,12 @@ public class TSConfigurationUnitTest {
         assertEquals("Rules size should be three", 3, configuration.getRules().size());
     }
 
+    @Test
+    public void findRule() throws Exception {
+        TSConfiguration configuration = TSConfiguration.defaultConfiguration();
+        TSRule rule = configuration.findRule(TSRule.TS_RULE_NAME_MORNING);
+
+        assertEquals("Name should be equal", TSRule.TS_RULE_NAME_MORNING, rule.getName());
+    }
+
 }
