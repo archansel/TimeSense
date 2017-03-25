@@ -5,6 +5,7 @@ import com.gwk.timesense.listener.TSListener;
 import com.gwk.timesense.rule.TSRule;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -37,7 +38,7 @@ public class TimeSense {
     /***
      * @return TSConfiguration Getter for configuration property
      */
-    private TSConfiguration getConfiguration() {
+    public TSConfiguration getConfiguration() {
         return configuration;
     }
 
@@ -337,7 +338,30 @@ public class TimeSense {
      * @return whether inside or not
      */
     private Boolean insideDate(Date date, Date start, Date end) {
-        return date.getTime() >= start.getTime() && date.getTime() < end.getTime();
+        Date now = new Date();
+
+        Calendar nowCalendar = Calendar.getInstance();
+        nowCalendar.setTime(now);
+
+        Calendar tomorrowCalendar = Calendar.getInstance();
+        tomorrowCalendar.setTime(now);
+        tomorrowCalendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.setTime(start);
+        startCalendar.set(nowCalendar.get(Calendar.YEAR), nowCalendar.get(Calendar.MONTH), nowCalendar.get(Calendar.DAY_OF_MONTH));
+        Date startTime = startCalendar.getTime();
+
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(end);
+        if (startCalendar.get(Calendar.HOUR_OF_DAY) <= endCalendar.get(Calendar.HOUR_OF_DAY)) {
+            endCalendar.set(nowCalendar.get(Calendar.YEAR), nowCalendar.get(Calendar.MONTH), nowCalendar.get(Calendar.DAY_OF_MONTH));
+        } else {
+            endCalendar.set(tomorrowCalendar.get(Calendar.YEAR), tomorrowCalendar.get(Calendar.MONTH), tomorrowCalendar.get(Calendar.DAY_OF_MONTH));
+        }
+        Date endTime = endCalendar.getTime();
+
+        return date.getTime() >= startTime.getTime() && date.getTime() < endTime.getTime();
     }
 
 }
