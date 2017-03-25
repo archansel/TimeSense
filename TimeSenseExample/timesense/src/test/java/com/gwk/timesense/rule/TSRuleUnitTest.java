@@ -22,15 +22,15 @@ public class TSRuleUnitTest {
     private Calendar calendar;
 
     private static SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
-    private static boolean assertEqualDates(Date date1, Date date2) {
+    private static void assertEqualDates(Date date1, Date date2) {
         String d1 = formatter.format(date1);
         String d2 = formatter.format(date2);
-        return d1.equals(d2);
+        assertTrue("Dates should be equal", d1.equals(d2));
     }
-    private static boolean assertNotEqualDates(Date date1, Date date2) {
+    private static void assertNotEqualDates(Date date1, Date date2) {
         String d1 = formatter.format(date1);
         String d2 = formatter.format(date2);
-        return !d1.equals(d2);
+        assertFalse("Dates should not be equal", d1.equals(d2));
     }
 
     @Before
@@ -63,7 +63,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = new TSRule(name, start, end);
 
-        assertEquals(name, rule.getName());
+        assertEquals("Name should be equal", name, rule.getName());
         assertEqualDates(start, rule.getStartTime());
         assertEqualDates(end, rule.getEndTime());
     }
@@ -78,7 +78,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = TSRule.morning();
 
-        assertEquals(TSRule.TS_RULE_NAME_MORNING, rule.getName());
+        assertEquals("Name should be equal", TSRule.TS_RULE_NAME_MORNING, rule.getName());
         assertEqualDates(start, rule.getStartTime());
         assertEqualDates(end, rule.getEndTime());
     }
@@ -93,7 +93,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = TSRule.afternoon();
 
-        assertEquals(TSRule.TS_RULE_NAME_AFTERNOON, rule.getName());
+        assertEquals("Name should be equal", TSRule.TS_RULE_NAME_AFTERNOON, rule.getName());
         assertEqualDates(start, rule.getStartTime());
         assertEqualDates(end, rule.getEndTime());
     }
@@ -108,7 +108,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = TSRule.evening();
 
-        assertEquals(TSRule.TS_RULE_NAME_EVENING, rule.getName());
+        assertEquals("Name should be equal", TSRule.TS_RULE_NAME_EVENING, rule.getName());
         assertEqualDates(start, rule.getStartTime());
         assertEqualDates(end, rule.getEndTime());
     }
@@ -123,7 +123,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = TSRule.night();
 
-        assertEquals(TSRule.TS_RULE_NAME_NIGHT, rule.getName());
+        assertEquals("Name should be equal", TSRule.TS_RULE_NAME_NIGHT, rule.getName());
         assertEqualDates(start, rule.getStartTime());
         assertEqualDates(end, rule.getEndTime());
     }
@@ -139,7 +139,7 @@ public class TSRuleUnitTest {
 
         TSRule rule = new TSRule(name, start, end);
 
-        assertEquals(name, rule.getName());
+        assertEquals("Name should be equal", name, rule.getName());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class TSRuleUnitTest {
         String newName = "NAME";
         rule.setName(newName);
 
-        assertEquals(newName, rule.getName());
+        assertEquals("Name should be equal", newName, rule.getName());
     }
 
     @Test
@@ -230,8 +230,8 @@ public class TSRuleUnitTest {
         TSRule morning = TSRule.morning();
         TSRule night = TSRule.night();
 
-        assertTrue(morning.equals(morning));
-        assertFalse(morning.equals(night));
+        assertTrue("Rules should be equal", morning.equals(morning));
+        assertFalse("Rules should not be equal", morning.equals(night));
     }
 
 }
