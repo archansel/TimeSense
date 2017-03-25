@@ -30,11 +30,11 @@ Quite easy to create TSRule object, just use its object constructor that accept 
 
 Aside from its default constructor, we provide a fast way to generate each default rules.
 
-```Java
+```
     TSRule.morning();
     TSRule.afternoon();
     TSRule.evening();
-	TSRule.night();
+    TSRule.night();
 ```
 
 #### Property
@@ -61,13 +61,22 @@ Configuration object for TimeSense class. TSConfiguration might contains some ru
 
 There are three ways how you can create TSConfiguration object:
 
-`TSConfiguration.default()`
+```
+    TSConfiguration.default()
+```
+
 The easiest way to generate TSConfiguration object. It will return new TSConfiguration object with four rules defined in it (`TS_RULE_NAME_MORNING`, `TS_RULE_NAME_AFTERNOON`, `TS_RULE_NAME_EVENING`, `TS_RULE_NAME_NIGHT`).
 
-`new TSConfiguration()`
+```
+    new TSConfiguration()
+```
+
 Empty configuration object. No rules are defined in it, you have to add it manualy.
 
-`new TSConfiguration(configuration)`
+```
+    new TSConfiguration(configuration)
+```
+
 Create TSConfiguration object based on another TSConfiguration object. The new configuration object will copy every rules defined in the source configuration object.
 
 We also provide a builder class `TSConfiguration.Builder` that can be used to build configuration object.
