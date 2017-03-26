@@ -96,6 +96,18 @@ public class MainActivity extends AppCompatActivity implements TSListener {
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Reset color
+                TextView labelMorning = (TextView) findViewById(R.id.labelMorning);
+                labelMorning.setTextColor(Color.BLACK);
+                TextView labelAfternoon = (TextView) findViewById(R.id.labelAfternoon);
+                labelAfternoon.setTextColor(Color.BLACK);
+                TextView labelEvening = (TextView) findViewById(R.id.labelEvening);
+                labelEvening.setTextColor(Color.BLACK);
+                TextView labelNight = (TextView) findViewById(R.id.labelNight);
+                labelNight.setTextColor(Color.BLACK);
+                TextView labelCustom = (TextView) findViewById(R.id.labelCustom);
+                labelCustom.setTextColor(Color.BLACK);
+
                 TimeSense.getInstance().trigger(MainActivity.this.calendar.getTime());
             }
         });
@@ -114,27 +126,23 @@ public class MainActivity extends AppCompatActivity implements TSListener {
     }
 
     @Override
-    public void timeSenseTriggered(TSRule rule) {
+    public void timeSenseTriggered(String ruleName) {
         TextView labelMorning = (TextView) findViewById(R.id.labelMorning);
-        labelMorning.setTextColor(Color.BLACK);
         TextView labelAfternoon = (TextView) findViewById(R.id.labelAfternoon);
-        labelAfternoon.setTextColor(Color.BLACK);
         TextView labelEvening = (TextView) findViewById(R.id.labelEvening);
-        labelEvening.setTextColor(Color.BLACK);
         TextView labelNight = (TextView) findViewById(R.id.labelNight);
-        labelNight.setTextColor(Color.BLACK);
         TextView labelCustom = (TextView) findViewById(R.id.labelCustom);
-        labelCustom.setTextColor(Color.BLACK);
 
-        if (rule.getName().equals(TSRule.TS_RULE_NAME_MORNING)) {
+        if (ruleName.equals(TSRule.TS_RULE_NAME_MORNING)) {
             labelMorning.setTextColor(Color.GREEN);
-        } else if (rule.getName().equals(TSRule.TS_RULE_NAME_AFTERNOON)) {
+        } else if (ruleName.equals(TSRule.TS_RULE_NAME_AFTERNOON)) {
             labelAfternoon.setTextColor(Color.GREEN);
-        } else if (rule.getName().equals(TSRule.TS_RULE_NAME_EVENING)) {
+        } else if (ruleName.equals(TSRule.TS_RULE_NAME_EVENING)) {
             labelEvening.setTextColor(Color.GREEN);
-        } else if (rule.getName().equals(TSRule.TS_RULE_NAME_NIGHT)) {
+        } else if (ruleName.equals(TSRule.TS_RULE_NAME_NIGHT)) {
             labelNight.setTextColor(Color.GREEN);
-        } else if (rule.getName().equals(CUSTOM_RULE)) {
+        } else if (ruleName.equals(CUSTOM_RULE)) {
+            labelCustom.setTextColor(Color.GREEN);
             new AlertDialog.Builder(MainActivity.this).setMessage("Custom rule triggered").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                 }
