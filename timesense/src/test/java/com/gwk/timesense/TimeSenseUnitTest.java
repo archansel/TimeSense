@@ -68,7 +68,7 @@ public class TimeSenseUnitTest {
         calendar.set(Calendar.HOUR_OF_DAY, 18);
         this.eveningDate = calendar.getTime();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.HOUR_OF_DAY, 1);
         this.nightDate = calendar.getTime();
     }
 
@@ -92,6 +92,7 @@ public class TimeSenseUnitTest {
 
     @Test
     public void addRules() throws Exception {
+        TimeSense.getInstance().setConfiguration(new TSConfiguration());
         TimeSense.getInstance().addRules(TSConfiguration.defaultConfiguration().getRules());
 
         assertEquals("Rules size should be 4", 4, TimeSense.getInstance().getConfiguration().getRules().size());
@@ -201,49 +202,37 @@ public class TimeSenseUnitTest {
 
     @Test
     public void addListener() throws Exception {
-        TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
-
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(this.listener);
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(1)).timeSenseTriggered(rules);
+        verify(this.listener, times(1)).timeSenseTriggered();
     }
 
     @Test
     public void addListenerForRuleName() throws Exception {
         TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
 
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(rule.getName(), this.listener);
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(1)).timeSenseTriggered(rules);
+        verify(this.listener, times(1)).timeSenseTriggered(rule.getName());
     }
 
     @Test
     public void removeListeners() throws Exception {
-        TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
-
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(this.listener);
         TimeSense.getInstance().removeListeners();
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(0)).timeSenseTriggered(rules);
+        verify(this.listener, times(0)).timeSenseTriggered();
     }
 
     @Test
     public void removeListener() throws Exception {
         TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
 
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(this.listener);
@@ -251,14 +240,13 @@ public class TimeSenseUnitTest {
         TimeSense.getInstance().removeListener(this.listener);
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(0)).timeSenseTriggered(rules);
+        verify(this.listener, times(0)).timeSenseTriggered();
+        verify(this.listener, times(0)).timeSenseTriggered(rule.getName());
     }
 
     @Test
     public void removeListenerForRuleName() throws Exception {
         TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
 
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(rule.getName(), this.listener);
@@ -266,14 +254,12 @@ public class TimeSenseUnitTest {
         TimeSense.getInstance().removeListener(rule.getName());
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(0)).timeSenseTriggered(rules);
+        verify(this.listener, times(0)).timeSenseTriggered(rule.getName());
     }
 
     @Test
     public void removeListenerForRuleNameAndListener() throws Exception {
         TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
 
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(rule.getName(), this.listener);
@@ -281,33 +267,27 @@ public class TimeSenseUnitTest {
         TimeSense.getInstance().removeListener(TSRule.afternoon().getName(), this.listener);
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(1)).timeSenseTriggered(rules);
+        verify(this.listener, times(1)).timeSenseTriggered(rule.getName());
     }
 
     @Test
     public void triggerWithTime() throws Exception {
-        TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
-
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(this.listener);
 
         TimeSense.getInstance().trigger(this.morningDate);
-        verify(this.listener, times(1)).timeSenseTriggered(rules);
+        verify(this.listener, times(1)).timeSenseTriggered();
     }
 
     @Test
     public void triggerMatchWithTime() throws Exception {
         TSRule rule = TSRule.morning();
-        ArrayList<TSRule> rules = new ArrayList<TSRule>();
-        rules.add(rule);
 
         TimeSense.getInstance().setConfiguration(TSConfiguration.defaultConfiguration());
         TimeSense.getInstance().addListener(this.listener);
 
         TimeSense.getInstance().triggerMatch(rule, this.nightDate);
-        verify(this.listener, times(0)).timeSenseTriggered(rules);
+        verify(this.listener, times(0)).timeSenseTriggered(rule.getName());
     }
 
 }
