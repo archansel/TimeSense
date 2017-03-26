@@ -293,21 +293,19 @@ public class TimeSense {
      * @param time to be checked with rules
      */
     public void trigger(Date time) {
-        ArrayList<TSListener> triggeredListeners = new ArrayList<TSListener>();
         ArrayList<TSRule> matchRules = this.detect(time);
         for (TSRule rule: matchRules) {
             ArrayList<TSListener> listeners = this.specificListeners.get(rule.getName());
             if (listeners != null && listeners.size() > 0) {
                 for (TSListener listener: listeners) {
-                    if (!triggeredListeners.contains(listener)) triggeredListeners.add(listener);
+                    listener.timeSenseTriggered(rule.getName());
                 }
             }
         }
-        for (TSListener listener: this.genericListeners) {
-            if (!triggeredListeners.contains(listener)) triggeredListeners.add(listener);
-        }
-        for (TSListener listener: triggeredListeners) {
-            listener.timeSenseTriggered(matchRules);
+        if (!matchRules.isEmpty()) {
+            for (TSListener listener : this.genericListeners) {
+                listener.timeSenseTriggered();
+            }
         }
     }
 
@@ -328,20 +326,14 @@ public class TimeSense {
      */
     public void triggerMatch(TSRule rule, Date time) {
         if (this.isMatch(rule, time)) {
-            ArrayList<TSListener> triggeredListeners = new ArrayList<TSListener>();
             ArrayList<TSListener> listeners = this.specificListeners.get(rule.getName());
             if (listeners != null && listeners.size() > 0) {
                 for (TSListener listener: listeners) {
-                    if (!triggeredListeners.contains(listener)) triggeredListeners.add(listener);
+                    listener.timeSenseTriggered(rule.getName());
                 }
             }
-            for (TSListener listener: this.genericListeners) {
-                if (!triggeredListeners.contains(listener)) triggeredListeners.add(listener);
-            }
-            ArrayList<TSRule> matchRules =  new ArrayList<TSRule>();
-            matchRules.add(rule);
-            for (TSListener listener: triggeredListeners) {
-                listener.timeSenseTriggered(matchRules);
+            for (TSListener listener : this.genericListeners) {
+                listener.timeSenseTriggered();
             }
         }
     }

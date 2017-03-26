@@ -86,6 +86,15 @@ We also provide a builder class `TSConfiguration.Builder` that can be used to bu
 - `TSConfiguration.removeRule(ruleName)`, remove rule name from configuration
 - `TSConfiguration.findRule(ruleName)`, find rule with name from configuration
 
+### TSListener
+
+Interface class that can listen to TimeSense event.
+
+#### Protocol
+
+- `TSListener.timeSenseTriggered()`, triggered only if listen to all rules (not using specific rule name)
+- `TSListener.timeSenseTriggered(ruleName)`, triggered if certain rule match
+
 ### TimeSense
 
 Singleton class that handle all the detection logic and handling. Can be accessed using `TimeSense.getInstance()`
