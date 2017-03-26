@@ -12,5 +12,6 @@ import java.util.ArrayList;
  * @version 0.1
  */
 public interface TSListener {
-    public void timeSenseTriggered(ArrayList<TSRule> rules);
+    public void timeSenseTriggered();
+    public void timeSenseTriggered(String ruleName);
 }
