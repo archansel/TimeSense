@@ -4,7 +4,25 @@ Easy to use event detection based on time. Time Sense provide default set of rul
 
 ## Install
 
+Add jitpack repository
+```gradle
+repositories {
+    // another repositories
+    maven { url 'https://jitpack.io' }
+}
+```
+
+Add dependencies in build.gradle file
+```gradle
+dependencies {
+    // another dependencies
+    compile 'com.github.archansel:TimeSense:0.1'
+}
+```
+
 ## Usage
+
+See example project.
 
 ## API
 
