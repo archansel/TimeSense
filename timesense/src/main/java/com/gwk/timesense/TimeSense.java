@@ -353,7 +353,10 @@ public class TimeSense {
 
         Calendar tomorrowCalendar = Calendar.getInstance();
         tomorrowCalendar.setTime(now);
-        tomorrowCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        tomorrowCalendar.add(Calendar.DATE, 1);
+
+        Calendar dateCalendar = Calendar.getInstance();
+        dateCalendar.setTime(date);
 
         Calendar startCalendar = Calendar.getInstance();
         startCalendar.setTime(start);
@@ -366,10 +369,15 @@ public class TimeSense {
             endCalendar.set(nowCalendar.get(Calendar.YEAR), nowCalendar.get(Calendar.MONTH), nowCalendar.get(Calendar.DAY_OF_MONTH));
         } else {
             endCalendar.set(tomorrowCalendar.get(Calendar.YEAR), tomorrowCalendar.get(Calendar.MONTH), tomorrowCalendar.get(Calendar.DAY_OF_MONTH));
+
+            if (dateCalendar.get(Calendar.HOUR_OF_DAY) >= 0 && dateCalendar.get(Calendar.HOUR_OF_DAY) <= endCalendar.get(Calendar.HOUR_OF_DAY)) {
+                dateCalendar.set(tomorrowCalendar.get(Calendar.YEAR), tomorrowCalendar.get(Calendar.MONTH), tomorrowCalendar.get(Calendar.DAY_OF_MONTH));
+            }
         }
         Date endTime = endCalendar.getTime();
+        Date dateTime = dateCalendar.getTime();
 
-        return date.getTime() >= startTime.getTime() && date.getTime() < endTime.getTime();
+        return dateTime.getTime() >= startTime.getTime() && dateTime.getTime() < endTime.getTime();
     }
 
 }

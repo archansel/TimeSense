@@ -68,7 +68,7 @@ public class TimeSenseUnitTest {
         calendar.set(Calendar.HOUR_OF_DAY, 18);
         this.eveningDate = calendar.getTime();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 2);
         this.nightDate = calendar.getTime();
     }
 
